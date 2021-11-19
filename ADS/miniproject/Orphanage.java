@@ -1,12 +1,15 @@
 
 
 import java.util.*;
+import java.lang.*;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 class visitor
 
 {
 	static Node head;
+	
    static class Node
   {
 	  String name;
@@ -30,19 +33,21 @@ class visitor
 	 void entry()
 	{
 		System.out.println(            "====*====*====*====*====*=====*====*====*====*=====*");
-		System.out.println(            "|    Welcome to Ayodhya Shelter Home!!!!!!!!!!     |");
+		System.out.println(            "|        Welcome to Ayodhya Shelter Home           |");
 		System.out.println(            "====*====*====*====*=====*=====*====*====*====*====*");
 	}
 	void generalDetails()
 	{
-		System.out.println("\n\nenter your Name and address for security purpose");
-		System.out.println(" ");
-		String name=sc.nextLine();
 		
-		String address=sc.nextLine();
+		System.out.println("\n\nEnter your Name and Address for security purpose :");
+		System.out.println(" ");
+		String name=sc.next();
+		
+		String address=sc.next();
 		insertEnd(name,address);
 		
 		display();
+		
 	}
 	
 	 void insertEnd(String name,String address)
@@ -66,23 +71,39 @@ class visitor
     public void display()
   {
 	  Node n=head;
+	 
 	  while(n!=null)
 	  {
 		
-		  System.out.println("your details are :"+"\n"+"Name is :"+n.name+"\n"+"Address is :"+n.address);
+		  System.out.println("Your Details :"+"\n"+"Name    :"+n.name+"\n"+"Address :"+n.address);
 		  System.out.println();
 		  n=n.link;
+		
 	  }
   }
+  
+  //-------Srearching in linked list>>>>>>>
+		int search(String name)
+		{
+			int count=0;
+			Node n=head;
+			while(n!=null)
+			{
+				if(n.name.equals(name))
+					count++;
+				n=n.link;
+			}
+			return count;
+		}
 	void choice()
 	{
 		int q;
 		
 	do
 		{
-		System.out.println("--------------------------------------------------------------------------------------");
-		System.out.println("| enter 1 for Food Distribution ||   2 for Other Dispensiries ||   3 for Donation(money)|  ");
-		System.out.println("--------------------------------------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------------------------------------");
+		System.out.println("| Enter : 1 For Food Distribution ||   2 For Other Dispensiries ||   3 For Donation(Money)|");
+		System.out.println("--------------------------------------------------------------------------------------------");
 		int ch=sc.nextInt();
 		boolean b;
 		
@@ -90,7 +111,7 @@ class visitor
 		{
 			
 			default:
-			System.out.println("You can spend some time with them ********\n*********because Time is one of the most powerful things in this entire universe");
+			System.out.println("You can spend some time with them ********\n*********because Time is one of the most powerful thing in this entire universe");
 			break;
 			case 1:
 			    foodDistribute();
@@ -102,9 +123,13 @@ class visitor
 			  donation();
 			break;
 		}
-		System.out.println("  continue the process press (1) or press (0) for exit ");
+		System.out.println(" Do you want to continue ?  press (1) / press (0) ");
 		 q=sc.nextInt();
-           
+		 if(q==1)
+           generalDetails();
+	   else
+		   return;
+		   
 		 
 		}while(q!=0);
         	
@@ -112,23 +137,25 @@ class visitor
 	void foodDistribute()
 	{
 		String food[]=new String[3];
-		food[0]="Fruit and vegetables";
-		food[1]="Milk and dairy products";
-		food[2]="Beans, pulses";
-		 System.out.println("you can come with these nutritious food also ======>");
+		food[0]="Fruit & Vegetables";
+		food[1]="Milk & Dairy products";
+		food[2]="Beans & Pulses";
+		System.out.println("What you have for children");
+		 String items=sc.next();
+		 System.out.println("You can come with these nutritious food also ======>");
 		 System.out.println(" ");
-		 System.out.println(" ----*-----*------*-----*-------*-----*------*------*------*---------*----");
+		 System.out.println(" ----*-----*------*-----*-------*-----*------*------*------*---------*");
 		 for(int i=0;i<3;i++)
 		 {
 			 System.out.print("[ "+food[i]+" ]   ");
 		 }
 		 System.out.println(" ");
-		 System.out.println(" ----*-----*------*-----*-------*-----*------*------*------*----------*----");
+		 System.out.println(" ----*-----*------*-----*-------*-----*------*------*------*----------*");
 			  
 			  System.out.println(" ");
-				  System.out.println("You can distribute the food in between 12 pm and 2 pm");
+				  System.out.println("You can distribute these food in between 12 pm and 2 pm");
 				   System.out.println(" ");
-				  System.out.println("thank you for your Delicious and Nutritious food to our childreans ");
+				  System.out.println("Thank you for your Delicious and Nutritious food to our children.....! \n");
 				 
 			  
 		
@@ -137,13 +164,15 @@ class visitor
 	void otherDispeceries()
 	{
 		String dis[]=new String[4];
-		 dis[0]="Old clothes";
-		 dis[1]="school uniform";
-		 dis[2]="toys";
-		 dis[3]="notebooks and pens";
-		 System.out.println("you can come with these items also ======>");
+		 dis[0]="Old Clothes";
+		 dis[1]="School Uniform";
+		 dis[2]="Toys";
+		 dis[3]="Notebooks & Pens";
+		 System.out.println("What you have for children");
+		 String items1=sc.next();
+		 System.out.println("You can come with these items also ======>");
 		 System.out.println(" ");
-		 System.out.println(" ----*-----*------*-----*-------*-----*------*------*------*---------*----");
+		 System.out.println(" ----*-----*------*-----*-------*-----*------*------*------*---------*");
 		 for(int i=0;i<4;i++)
 		 {
 			
@@ -151,11 +180,11 @@ class visitor
 
 		 }
 		 System.out.println(" ");
-		 System.out.println(" ----*-----*------*-----*-------*-----*------*------*------*----------*----");
+		 System.out.println(" ----*-----*------*-----*-------*-----*------*------*------*----------*");
 			   
 			  System.out.println("You can distribute items in between 2.30 pm and 4.30 pm");
 			  System.out.println(" ");
-				  System.out.println("thank you for your lovely gifts");
+				  System.out.println("Thank you for your lovely gifts");
 			  
 			  
 				  
@@ -165,41 +194,37 @@ class visitor
 	void donation()
 	{
 		Scanner sc=new Scanner(System.in);
-		 System.out.println("enter your amount");
+		 System.out.println("Enter your amount");
 		 long amount=sc.nextLong();
+		 
 		 if(amount<0)
 		 {
-			 System.out.println("please enter valid amount!!!!");
+			 System.out.println("Please enter valid amount!!!!");
 		 }
-		  else if(amount<25000)
+		  else
 		 {
-			 System.out.println("you donate a good amount to our orphanage home ");
+			 System.out.println("enter your name");
+			 String name1=sc.next();
+			
+			  int count=search(name1);
+			  if(count<2)
+			  {
+			 System.out.println("You donate a good amount to our orphanage home ");
 			 System.out.println("|```````|");
 			 System.out.println("| *   * |");
 			 System.out.println("|   |   |     THANK YOU!!!!!");
 			 System.out.println("|   _   |");
 			 System.out.println("| _ _ _ |");
-		 }
-		 else
-		 {   
-			 System.out.println("How many visits you have given to our orphanage home!!!!!");
-			 int z=sc.nextInt();
-			 if(z<=3)
-			 {
-			
-				 System.out.println("we will be happy to see you again!!!");
-			 }
-			 else
-			 {
-				 System.out.println("********* CONGRATUlATIONS*************");
+			  }
+			  else
+			  {
+				  System.out.println("********* CONGRATUlATIONS*************");
 				 System.out.println(" ");
-				 System.out.println("=====>  we want you to address our childrens in next program!!!!!!!");
+				 System.out.println("=====>  We want you to address our children in next program!!!!!!!");
 				 System.out.println(" ");
-				 
-		   System.out.println("you gave us a very good amount it will help our childrens a lot \n \t we sincerealy hope that you will stay involved ");
-		   
+			  }
 		 }
-		 }
+		
 			 
 		 
 	}
@@ -217,12 +242,12 @@ class Orphanage
 		Scanner sc=new Scanner(System.in);
 		
 			System.out.println("  ***** VISITING TIME (10AM to 5PM)*****");
-			System.out.println("are you arrived in time between 10AM to 5PM-----yes/no");
+			System.out.println("Are you arrived in  between 10AM to 5PM ?  YES/NO");
 			String str1=sc.next();
-		
-			if(str1.equals("yes"))
+		     String str="yes";
+			if(str.equalsIgnoreCase(str1))  
 			{
-				System.out.println("\t[you can enter now :)- ]");
+				System.out.println("\t[You can enter now :)- ]");
 				v1.entry();
 				v1.generalDetails();
 				
