@@ -1,28 +1,57 @@
 
-exercise 3
 
+
+exercise 3
+Display all the Supplier names with the initial letter capital.
 que 1:-
 select upper(substr(Sname,1,1)) from supplier;
 
+
+Display all the Supplier names in upper case.
 que 2:-
 select  upper(pname) from parts;
 
+Display all the Supplier names in lower case.
 que3:-
 select  lower(pname) from parts;
 
+Display all the Supplier names padded to 25 characters, with spaces on the left.
 que4:-
 select lpad(pname,25,' ' )  from parts;
 
+ Display all the Supplier names (with ‘la’ replaced by ‘ro’).
+HINT: REPLACE.
 que5:-
 select replace(pname,'la','ro') from parts;
 
+Implement the above command such that ‘l’ is replaced with ‘r’ and ‘a’ is replaced
+with ‘o’.
 que6:=
 select replace(pname,'l','r'),replace(pname,'a','o') parts;
+
+
+ Display the Supplier names and the lengths of the names.
 que7:-
 select pname,length(pname) from parts;
 
+
+ Use the soundex function to search for a supplier by the name of ‘BLOKE’.
 que8:-
 select  * from parts where soundex(pname)=soundex('BLOKE');
 
+
+9. Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.).
+select sname, case
+when Status =10 then 'Ten'
+when Status =20 then 'Twenty'
+when Status =30 then 'Thirty'
+when Status =40 then 'Forty'
+when Status =50 then 'Fifty'
+else 'Others'
+end "STATUS"
+from supplier;
+
+
+ Display the current day (e.g. Thursday).
 que10:-
 select dayname(sysdate());
