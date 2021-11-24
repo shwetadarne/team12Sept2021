@@ -1,0 +1,23 @@
+
+
+exercise 2
+
+que1:-
+select city from supplier order by  city desc;
+
+que2:-
+select  city,pname from parts order by city desc, pname desc;
+
+que3:-
+select * from supplier where Status>10 and Status<20;
+
+que4:-
+select * from parts where Weight>=10 and Weight<=15;
+que5:-
+select * from parts where (substr(pname,1,1)='s');
+
+que 6:-
+select * from supplier where (substr(city,1,1)='l');
+
+que 7:-
+select * from projects where (substr(jname,3,1)='n');
