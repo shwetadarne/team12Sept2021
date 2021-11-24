@@ -1,0 +1,100 @@
+
+select cnum,city,Rating from customer order by 1;
+select * from customer where city>'a' and city<'z';
+select * from customer where cname like '%a%';
+select * from customer where cname='%a';
+select * from customer where cname like '____a%';
+select * from customer where cname not like '%a%';
+select * from customer where Rating between 100 and 200;
+select * from customer where Rating not between 100 and 200;
+select * from customer where cname >'a' and cname<'h';
+ select * from customer where Cname='hoffman' or Cname='liu san' or cname='grass';
+
+select * from customer where rating = any(100,200,300);
+select * from customer where rating in(100,200,300);
+select * from customer where rating not in(100,200,300);
+select * from customer where rating >any(100,200,300);
+select * from customer where city in('mumbai','london');
+create table hospital(p_id int(4), p_name varchar(20), city varchar(20), charge int(10));
+select * from hospital;
+insert into hospital values(0001,'swati','wardha',400),
+(0002,'radha','pashim',232),
+(0003,'gayu','pawanar',23434),
+(0005,'ram','yogi',9898);
+select * from hospital; 
+update hospital set charge=87877 where p_id=1;
+select * from hospital;
+delete from hospital where p_id=0001;
+create table abc(name char(10));
+select * from abc;
+drop  table abc;
+select * from abc;
+
+
+DTL (TRANSECTION COMMANDS)
+
+select * from hospital;
+
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (1,'snehal', 'amravti',10000) ;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (6,'shailesh', 'pune',60000) ;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (7,'shubham', 'kollapur',56500) ;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (11,'shubh', 'kolkata',56) ;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (13,'mahi', 'wardha',98713) ;
+savepoint pqr;
+update hospital set p_name='siddesh' where city='yogi';
+update hospital set p_id=10 where city='yogi';
+update hospital set charge=09090 where city='yogi';
+savepoint abc;
+delete from hospital where p_id=7;
+delete from hospital where p_name='radha';
+rollback to abc;
+select * from hospital;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (17,'shubh', 'kolkata',56) ;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (20,'shubh', 'kolkata',56) ;
+savepoint pqr;
+delete from hospital where p_name='shubh';
+delete from hospital where p_name='siddesh';
+delete from hospital where p_id=10;
+rollback  to pqr;
+select * from hospital;
+
+
+
+FUNCTIONS QUERIES
+
+create table emp2(E_id int(10), F_name varchar(20), L_name varchar(20));
+insert into emp2(E_id,F_name,L_name) values(1,'hitesh','rathod'),
+(2,'swati','pawar'),
+(3,'punam','yadav'),
+(4,'megha','jadhav');
+update emp2 set F_name='hiteshri' where F_name='hitesh';
+select * from emp2;
+select concat(F_name,L_name) from emp2;
+select concat(F_name,'   ',L_name) from emp2;
+select concat('Miss','  ',F_name,'  ',L_name) from emp2;
+select concat('Miss','  ',F_name,'  ',L_name) as "DATA OF GRLS" from emp2;
+select upper(F_name) from emp2;
+update emp2 set F_name=upper(F_name) where F_name='hiteshri';
+select lower(F_name) from emp2;
+select lpad(F_name,25,'*') from emp2;
+select rpad(F_name,25,'*') from emp2;
+select rtrim(L_name) from emp2;
+select ltrim(L_name) from emp2;
+select trim(L_name) from emp2;
+select substr(F_name,3) from emp2;
+select substr(L_name,3,2) from emp2;
+select substr(L_name,-3) from emp2;
+select substr(L_name,-3,2) from emp2;
+select substr('New Mumbai',1,3) from emp2;
+select replace(F_name ,'a','xzy') from emp2;
+select instr(F_name ,'a') from emp2;
+select length(F_name) from emp2;
+select ascii(F_name) from emp2;
+select  ascii('z') from emp2;
+select distinct ascii('z') from emp2;
+select ascii('z') from dual;
+select substr('New Mumbai',1,3) from dual;
+select 3*12 from dual;
+select 'welcome to cdac'  as "MESSAGE" from dual;
+select char(65 using utf8)from dual;
+select * from emp2 where soundex(F_name)=soundex('megha');
