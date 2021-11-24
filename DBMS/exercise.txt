@@ -1,0 +1,80 @@
+
+exercise 1
+ que 1:-
+create table SEMP(
+EMPNO CHAR(4),
+EMPNAME CHAR(20),
+BASIC FLOAT,
+DEPTNO CHAR(2),
+DEPTHEAD CHAR(4));
+
+que 2:-
+select * from semp;
+
+Create  table SDEPT(
+DEPTNO CHAR(2),
+DEPTNAME CHAR(15));
+
+que 3:-
+insert into SDEPT values(
+ '10', Development),
+('20', Training)
+
+que 4:-
+insert into semp values(
+'0001', 'SUNIL', 6000, '10',null),
+('0002', 'HIREN', 8000, '20',null),
+('0003', 'ALI', 4000, '10', '0001'),
+('0004', 'GEORGE', 6000,null, '0002');
+
+
+que 5:-
+
+ create table SUPPLIER
+(`S#` char(3), Sname varchar(20), Status int(3), City varchar(20));
+insert into supplier(`s#`,sname,status,city) values('s1',null,'10',null),
+('s2',null,'20',null),
+('s3',null,'30',null),
+('s4',null,'40',null),
+('s5',null,'50',null);
+update supplier set city ='london' where Status='10';
+update supplier set city ='paries' where Status='20';
+update supplier set city ='uk' where Status='30';
+update supplier set city ='athens' where Status='40';
+select * from supplier;
+
+select `s#`,sname from supplier;
+select * from supplier where city='london';
+select * from supplier where city='paris' or city='athens';
+
+select * from supplier where Status>='20';
+select * from supplier where city!='london';
+select city from supplier;
+
+
+ create table PARTS
+(`P#` char(3), Pname varchar(20), Color varchar(10), Weight int(10), City varchar(20));
+insert into parts(`p#`,Pname,Color,Weight,City) values('p1','krihna','pink',23,'londan'),
+('p2','meghana','red',13,'paris'),
+('p3',null,'whilte',20,'athens'),
+('p4',null,'blue',63,'goa'),
+('p5','anna','black',89,'new york');
+select * from parts;
+
+select pname,color from parts where city='londan';
+select * from parts where city='athens';
+select * from parts pname where Weight>=12 and Weight<=14;
+
+ create table PROJECTS
+(`J#` char(3), Jname varchar(20), City varchar(20));
+insert into projects(`j#`,Jname,city) values('J1','krihna','londan'),
+('j2','meghana','paris'),
+('j3',null,'athens'),
+('j4',null,'goa'),
+('j5','anna','new york');
+select * from projects;
+
+
+ create table SUPPLIER_PARTS_PROJECT
+(`S#` char(3), `P#` char(3), `J#` char(3), Qty int(10));
+select * from SUPPLIER_PARTS_PROJECT;
