@@ -1,0 +1,28 @@
+
+exercise 3
+
+que 1:-
+select upper(substr(Sname,1,1)) from supplier;
+
+que 2:-
+select  upper(pname) from parts;
+
+que3:-
+select  lower(pname) from parts;
+
+que4:-
+select lpad(pname,25,' ' )  from parts;
+
+que5:-
+select replace(pname,'la','ro') from parts;
+
+que6:=
+select replace(pname,'l','r'),replace(pname,'a','o') parts;
+que7:-
+select pname,length(pname) from parts;
+
+que8:-
+select  * from parts where soundex(pname)=soundex('BLOKE');
+
+que10:-
+select dayname(sysdate());
