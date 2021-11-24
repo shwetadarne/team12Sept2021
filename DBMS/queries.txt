@@ -1,4 +1,5 @@
 
+SELECT COMMANDS
 select cnum,city,Rating from customer order by 1;
 select * from customer where city>'a' and city<'z';
 select * from customer where cname like '%a%';
@@ -98,3 +99,69 @@ select 3*12 from dual;
 select 'welcome to cdac'  as "MESSAGE" from dual;
 select char(65 using utf8)from dual;
 select * from emp2 where soundex(F_name)=soundex('megha');
+
+
+NUMBER FUNCTION
+
+select round(charge) from hospi2;
+select round(charge,1) from hospi2;
+select round(charge,2) from hospi2;
+select round(charge,-1) from hospi2;
+
+
+DATE FUNCTIONS
+
+select sysdate() from dual;
+select now() from dual;
+select sysdate(),now(),sleep(20),sysdate(), now() from dual;
+select adddate(sysdate(),1) from dual;
+select adddate(sysdate(),7) from dual;
+select adddate(sysdate(),-1) from dual;
+select adddate(sysdate(),charge) from hospi2;
+select date_add(birthdate,interval 2 month ) from employees;
+select date_add(birthdate,interval 2 month ) from employees;
+select date_add(birthdate,interval -2 month ) from employees;
+select date_add(birthdate,interval 1 year ) from employees;
+select last_day(birthdate ) from employees;
+select dayname(sysdate());
+select upper(dayname(sysdate())) from dual;
+select substr(dayname(sysdate()),1,3) ;
+select addtime('2010-10-15 11: 00:00:','1:30:45')from dual;
+select addtime('2010-10-15 11:00:00:','1')from dual;
+select addtime('2010-10-15 11:00:00:','-1')from dual;
+select * from hospital
+
+GROUP FUNCTIONS
+
+select * from products;
+select * from employees where Photo is null;
+select * from employees where Photo!= null;
+select * from employees where Photo is not null;
+select LastName + ifnull(photo,0) from employees;
+select ifnull(photo,0)+ifnull(lastname,0)from employees;
+select greatest(price,10) from products;
+select greatest(price*0.001,10) from products;
+  set int(2)  x= select greatest(price,10);
+  select least(price,100,1,12212) from products;
+  
+  select user() from dual;
+  show character set;
+  select case
+  when SupplierID=1 then 'one'
+   when SupplierID=2 then 'two'
+   when SupplierID=3 then 'third'
+   when SupplierID=4 then 'fourth'
+  end "IDS"
+  from products;
+  select sum(SupplierID) from suppliers;
+  select sum(ifnull(SupplierID,0)) from suppliers;
+  select avg(SupplierID) from suppliers;
+  select min(SupplierID) from suppliers;
+  select min(ifnull(SupplierID,0)) from suppliers;
+   select max(SupplierID) from suppliers;
+    select count(SupplierID) from suppliers;
+     select count(*) from suppliers;
+      select min(SupplierID) from products where unit ='aac';
+       select count(*) from suppliers where SupplierID>2;
+       select count(*),min(SupplierID),max(SupplierID),sum(SupplierID),avg(SupplierID) from suppliers;
+select * from products;
