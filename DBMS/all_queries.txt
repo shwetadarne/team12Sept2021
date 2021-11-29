@@ -1,0 +1,360 @@
+
+SELECT COMMANDS
+select cnum,city,Rating from customer order by 1;
+select * from customer where city>'a' and city<'z';
+select * from customer where cname like '%a%';
+select * from customer where cname='%a';
+select * from customer where cname like '____a%';
+select * from customer where cname not like '%a%';
+select * from customer where Rating between 100 and 200;
+select * from customer where Rating not between 100 and 200;
+select * from customer where cname >'a' and cname<'h';
+ select * from customer where Cname='hoffman' or Cname='liu san' or cname='grass';
+
+select * from customer where rating = any(100,200,300);
+select * from customer where rating in(100,200,300);
+select * from customer where rating not in(100,200,300);
+select * from customer where rating >any(100,200,300);
+select * from customer where city in('mumbai','london');
+create table hospital(p_id int(4), p_name varchar(20), city varchar(20), charge int(10));
+select * from hospital;
+insert into hospital values(0001,'swati','wardha',400),
+(0002,'radha','pashim',232),
+(0003,'gayu','pawanar',23434),
+(0005,'ram','yogi',9898);
+select * from hospital; 
+update hospital set charge=87877 where p_id=1;
+select * from hospital;
+delete from hospital where p_id=0001;
+create table abc(name char(10));
+select * from abc;
+drop  table abc;
+select * from abc;
+
+
+DTL (TRANSECTION COMMANDS)
+
+select * from hospital;
+
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (1,'snehal', 'amravti',10000) ;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (6,'shailesh', 'pune',60000) ;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (7,'shubham', 'kollapur',56500) ;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (11,'shubh', 'kolkata',56) ;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (13,'mahi', 'wardha',98713) ;
+savepoint pqr;
+update hospital set p_name='siddesh' where city='yogi';
+update hospital set p_id=10 where city='yogi';
+update hospital set charge=09090 where city='yogi';
+savepoint abc;
+delete from hospital where p_id=7;
+delete from hospital where p_name='radha';
+rollback to abc;
+select * from hospital;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (17,'shubh', 'kolkata',56) ;
+INSERT INTO hospital (p_id,p_name, city,charge) VALUES (20,'shubh', 'kolkata',56) ;
+savepoint pqr;
+delete from hospital where p_name='shubh';
+delete from hospital where p_name='siddesh';
+delete from hospital where p_id=10;
+rollback  to pqr;
+select * from hospital;
+
+
+
+FUNCTIONS QUERIES
+
+create table emp2(E_id int(10), F_name varchar(20), L_name varchar(20));
+insert into emp2(E_id,F_name,L_name) values(1,'hitesh','rathod'),
+(2,'swati','pawar'),
+(3,'punam','yadav'),
+(4,'megha','jadhav');
+update emp2 set F_name='hiteshri' where F_name='hitesh';
+select * from emp2;
+select concat(F_name,L_name) from emp2;
+select concat(F_name,'   ',L_name) from emp2;
+select concat('Miss','  ',F_name,'  ',L_name) from emp2;
+select concat('Miss','  ',F_name,'  ',L_name) as "DATA OF GRLS" from emp2;
+select upper(F_name) from emp2;
+update emp2 set F_name=upper(F_name) where F_name='hiteshri';
+select lower(F_name) from emp2;
+select lpad(F_name,25,'*') from emp2;
+select rpad(F_name,25,'*') from emp2;
+select rtrim(L_name) from emp2;
+select ltrim(L_name) from emp2;
+select trim(L_name) from emp2;
+select substr(F_name,3) from emp2;
+select substr(L_name,3,2) from emp2;
+select substr(L_name,-3) from emp2;
+select substr(L_name,-3,2) from emp2;
+select substr('New Mumbai',1,3) from emp2;
+select replace(F_name ,'a','xzy') from emp2;
+select instr(F_name ,'a') from emp2;
+select length(F_name) from emp2;
+select ascii(F_name) from emp2;
+select  ascii('z') from emp2;
+select distinct ascii('z') from emp2;
+select ascii('z') from dual;
+select substr('New Mumbai',1,3) from dual;
+select 3*12 from dual;
+select 'welcome to cdac'  as "MESSAGE" from dual;
+select char(65 using utf8)from dual;
+select * from emp2 where soundex(F_name)=soundex('megha');
+
+
+NUMBER FUNCTION
+
+select round(charge) from hospi2;
+select round(charge,1) from hospi2;
+select round(charge,2) from hospi2;
+select round(charge,-1) from hospi2;
+
+
+DATE FUNCTIONS
+
+select sysdate() from dual;
+select now() from dual;
+select sysdate(),now(),sleep(20),sysdate(), now() from dual;
+select adddate(sysdate(),1) from dual;
+select adddate(sysdate(),7) from dual;
+select adddate(sysdate(),-1) from dual;
+select adddate(sysdate(),charge) from hospi2;
+select date_add(birthdate,interval 2 month ) from employees;
+select date_add(birthdate,interval 2 month ) from employees;
+select date_add(birthdate,interval -2 month ) from employees;
+select date_add(birthdate,interval 1 year ) from employees;
+select last_day(birthdate ) from employees;
+select dayname(sysdate());
+select upper(dayname(sysdate())) from dual;
+select substr(dayname(sysdate()),1,3) ;
+select addtime('2010-10-15 11: 00:00:','1:30:45')from dual;
+select addtime('2010-10-15 11:00:00:','1')from dual;
+select addtime('2010-10-15 11:00:00:','-1')from dual;
+select * from hospital
+
+GROUP FUNCTIONS
+
+select * from products;
+select * from employees where Photo is null;
+select * from employees where Photo!= null;
+select * from employees where Photo is not null;
+select LastName + ifnull(photo,0) from employees;
+select ifnull(photo,0)+ifnull(lastname,0)from employees;
+select greatest(price,10) from products;
+select greatest(price*0.001,10) from products;
+  set int(2)  x= select greatest(price,10);
+  select least(price,100,1,12212) from products;
+  
+  select user() from dual;
+  show character set;
+  select case
+  when SupplierID=1 then 'one'
+   when SupplierID=2 then 'two'
+   when SupplierID=3 then 'third'
+   when SupplierID=4 then 'fourth'
+  end "IDS"
+  from products;
+  select sum(SupplierID) from suppliers;
+  select sum(ifnull(SupplierID,0)) from suppliers;
+  select avg(SupplierID) from suppliers;
+  select min(SupplierID) from suppliers;
+  select min(ifnull(SupplierID,0)) from suppliers;
+   select max(SupplierID) from suppliers;
+    select count(SupplierID) from suppliers;
+     select count(*) from suppliers;
+      select min(SupplierID) from products where unit ='aac';
+       select count(*) from suppliers where SupplierID>2;
+       select count(*),min(SupplierID),max(SupplierID),sum(SupplierID),avg(SupplierID) from suppliers;
+select * from products;
+
+
+GROUP BY CLAUSE:-
+create table employee(emp_id int(10),e_name varchar(20),sal float(20),dept_no int(10), job char(10), mgr int(10));
+select * from employee;
+insert into employee(emp_id,e_name,sal,dept_no,job,mgr)values(1,'arun',8000,1,'M',4),
+(2,'ali',7000,1,'C',1),
+(3,'kiran',3000,1,'C',1),
+(4,'jack',9000,2,'M',null),
+(5,'thomson',8000,2,'C',4);
+select sum(sal) from employee where dept_no=1;
+select dept_no,sum(sal) from employee  group by dept_no;
+select sum(sal) from employee  group by dept_no;
+select dept_no,min(sal) from employee  group by dept_no;
+select dept_no,count(*) from employee  group by dept_no;
+select dept_no,sum(sal) from employee where sal>7000 group by dept_no;
+select dept_no,job,sum(sal) from employee  group by dept_no,job;
+select dept_no,sum(sal),job,mgr from employee  group by dept_no,job,mgr;
+
+
+JOINS(VERY IMP)
+
+select sum(sal) from employee where dept_no=1;
+select dept_no,sum(sal) from employee  group by dept_no;
+select sum(sal) from employee  group by dept_no;
+select dept_no,min(sal) from employee  group by dept_no;
+select dept_no,count(*) from employee  group by dept_no;
+select dept_no,sum(sal) from employee where sal>7000 group by dept_no;
+select dept_no,job,sum(sal) from employee  group by dept_no,job;
+select dname,e_name from dept,employee where dept.dept_no=employee.dept_no;
+
+select dname,e_name from employee,dept where dept.dept_no=employee.dept_no ;
+select dname,e_name from employee,dept where dept.dept_no=employee.dept_no order by 1;
+select dname,e_name,job,mgr from employee,dept where dept.dept_no=employee.dept_no order by 1 ;
+
+select * from employee,dept where dept.dept_no=employee.dept_no order by 4;
+
+EQUIJOINT:-
+select dname, dept_no,loc,e_name,emp_id from employee,dept where dept.dept_no=employee.dept_no ;
+
+INEQUIJOINT:-
+select dname,e_name from employee,dept where dept.dept_no!=employee.dept_no;
+
+select dname,e_name,sum(sal) from employee,dept where dept.dept_no=employee.dept_no group by dname;
+
+
+select upper(e_name),dname from employee,dept where dept.dept_no=employee.dept_no group by upper(e_name) having sum(sal)>1000 order by 1;
+
+CARTIETION JOIN :-
+select dname,e_name from employee,dept;
+select dname,e_name from dept,employee;
+select dname,e_name,dept.dept_no from dept,employee;
+
+SELF JOIN :-
+select a.e_name, b.e_name from employee a,employee b where a.mgr=b.emp_id;
+
+
+
+create table depthead (dept_no int(20),dhead varchar(20));
+insert into depthead (dept_no,dhead) values(1,'arun'),
+(2,'jack');
+select * from depthead;
+select e_name,dname,dhead from dept,employee,depthead 
+
+3 TABLE JOIN :-
+/*
+where depthead.dept_no=dept.dept_no and dept.dept_no=employee.dept_no;*/
+where depthead.dept_no=dept.dept_no or dept.dept_no=employee.dept_no;
+select * from depthead;
+select * from dept;
+select * from employee;
+
+TYPES OF RELATIONSHIP :-
+
+create table projects2(projno char(20), clientname varchar(20),proj_dtls varchar(20));
+insert into projects2(projno,clientname,proj_dtls) values('p1', 'Deloitte','cgs'),
+('p2','morgan_stantey','ams'),
+('p3','dnp_paribas','macros_deg'),
+('p4','icici_bank','pps'),
+('p5','amfi','website_deg');
+select * from projects2;
+
+create table projects_emp2(projno char(10), emp_id int(10));
+insert into projects_emp2(projno,emp_id)values('p1', 1),('p2',2),('p3',3),('p4',4),('p5',5);
+select * from projects_emp2;
+drop table projects_emp1;
+select * from employee;
+
+select clientname, proj_dtls,e_name from projects_emp2,employee,projects2 
+where projects2.projno=projects_emp2.projno and employee.emp_id =projects_emp2.emp_id order by 1,2,3; 
+
+que:- display the name from employee of min sal?
+ans:-
+select e_name from employee where sal=(select min(sal) from employee);
+
+
+que:- display the 2nd largest sal from employee?
+ans:-
+select max(sal) from employee where sal<(select max(sal) from employee);
+
+
+que:- display the 3rd largest from employee
+ans:-
+select max(sal) from employee where sal<
+(select max(sal) from employee where
+(sal<(select max(sal) from employee)));
+
+que:- display the row who belong to thesame deptno as "thomson"
+ans:-
+select * from employee where dept_no=(select dept_no from employee where e_name='thomson');
+
+
+que:- display the row who belong to the same deptno as "thomson" other than "thomson"
+ans: 
+select * from employee where dept_no=(select dept_no from employee where e_name='thomson') and e_name!='thomson';
+
+que:- delete yhe row whose deptno is sameas thomson
+ans:-
+delete from employee where dept_no=
+(select tempp.dept_no from (select dept_no from employee
+where e_name='thomson') as tempp);
+
+que:- update the salary of employee which is same as job of kiran by 500000
+ans:-
+update employee set sal =500000 where job=(select tempp.job from(select job from employee where e_name='kiran') as tempp) 
+
+
+que:- display the employee which have same salary of any one of manager
+ans:-  select * from employee where sal  in (select sal from employee where job='M');
+
+
+que:-  display max salary of manager
+ans:-
+select * from employee where sal= (select max(sal) from employee where job='m');
+
+
+EXITS 
+select dname from dept  where exists ( select dept_no from employee where dept.dept_no=employee.dept_no);
+select dname from dept  where not  exists ( select dept_no from employee where dept.dept_no=employee.dept_no);
+
+
+SET OPERATIONS:-
+
+create table emp1(empno smallint(2),ename char(10));
+insert into emp1(empno,ename) values(1,'A'),
+(2,'B'),(3,'C'),(4,'D'),(5,'E');
+select * from emp1;
+delete from emp1 where empno=4;
+delete  from emp1 where empno=5;
+
+create table emp2(empno smallint(2),ename char(10));
+insert into emp2(empno,ename) values(1,'A'),
+(2,'B'),(3,'C'),(4,'D'),(5,'E');
+select * from emp2;
+
+select empno,ename from emp1 union  select empno,ename from emp2;
+
+select empno,ename from emp1 union all  select empno,ename from emp2 order by 1;
+
+
+  ALL IMP COMMANDS************* (DDL COMMANDS ):-
+
+rename table emp1 to black;
+select * from black;
+rename table black to emp1;
+
+alter table emp1 add gst int(10);
+select * from emp1;
+
+update emp1 set gst=00.2;
+alter table emp1 drop gst;
+alter table emp1 modify ename varchar(10);
+select * from emp1;
+select * from emp2;
+insert into emp1 select * from emp2;
+rollback;
+insert into emp1 select * from emp2 where empno=5;
+create table emp1_copy as select * from emp1;
+select * from emp1_copy;
+create table aaa as select * from emp1 where empno=5;
+select * from aaa;
+alter table emp1_copy add ename1 char(20);
+
+
+
+
+
+
+
+
+
+
+
